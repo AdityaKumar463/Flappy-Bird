@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4kq53kd6ioli"]
+
+[ext_resource type="Texture2D" uid="uid://cfjg20bxo1y4c" path="res://Game Objects/pole.png" id="1_4niwd"]
+[ext_resource type="Script" path="res://pole.gd" id="1_elxsb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ybd5"]
+size = Vector2(36, 349.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lojo8"]
+size = Vector2(49, 131)
+
+[node name="Pole" type="StaticBody2D" groups=["pole"]]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_elxsb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -414)
+scale = Vector2(2, 2)
+texture = ExtResource("1_4niwd")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(-2.26107e-12, 416)
+rotation = -3.14159
+scale = Vector2(2, 2)
+texture = ExtResource("1_4niwd")
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -418)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_0ybd5")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(8.87313e-06, 415.5)
+rotation = -3.14159
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_0ybd5")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(4.5, 0.5)
+shape = SubResource("RectangleShape2D_lojo8")
+
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

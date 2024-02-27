@@ -1,0 +1,24 @@
+[gd_resource type="Shortcut" load_steps=5 format=3 uid="uid://cw5o3y0ebbn27"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_ly5du"]
+device = -1
+keycode = 32
+unicode = 32
+
+[sub_resource type="InputEventKey" id="InputEventKey_6xqi0"]
+device = -1
+keycode = 4194309
+physical_keycode = 4194309
+key_label = 4194309
+
+[sub_resource type="InputEventKey" id="InputEventKey_wukq6"]
+device = -1
+keycode = 4194320
+
+[sub_resource type="InputEventKey" id="InputEventKey_lq6iu"]
+device = -1
+keycode = 87
+unicode = 119
+
+[resource]
+events = [SubResource("InputEventKey_ly5du"), SubResource("InputEventKey_6xqi0"), SubResource("InputEventKey_wukq6"), SubResource("InputEventKey_lq6iu")]

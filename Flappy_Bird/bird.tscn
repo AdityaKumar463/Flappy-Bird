@@ -1,0 +1,154 @@
+[gd_scene load_steps=22 format=3 uid="uid://cu7u1jhhw0e4l"]
+
+[ext_resource type="Script" path="res://Bird.gd" id="1_aqiht"]
+[ext_resource type="Texture2D" uid="uid://c4uwgwr0al4bp" path="res://Game Objects/Bird_Blue.png" id="2_0130r"]
+[ext_resource type="Texture2D" uid="uid://ctdv3yqr3bio1" path="res://Game Objects/Bird_yellow.png" id="2_mf5il"]
+[ext_resource type="Texture2D" uid="uid://clmaajq13dd7" path="res://Game Objects/Bird_Red.png" id="3_l581y"]
+[ext_resource type="AudioStream" uid="uid://b2c0icf1idu1o" path="res://Sound Efects/wing.wav" id="5_cpu3j"]
+[ext_resource type="AudioStream" uid="uid://cuvhssfi6htot" path="res://Sound Efects/die.wav" id="6_uomgm"]
+[ext_resource type="AudioStream" uid="uid://dywg8ayprniyr" path="res://Sound Efects/hit.wav" id="7_jeblh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lonxu"]
+atlas = ExtResource("2_0130r")
+region = Rect2(0, 0, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xd8hu"]
+atlas = ExtResource("2_0130r")
+region = Rect2(25, 0, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7jsge"]
+atlas = ExtResource("2_0130r")
+region = Rect2(50, 0, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7v7b"]
+atlas = ExtResource("2_0130r")
+region = Rect2(75, 0, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2fs11"]
+atlas = ExtResource("3_l581y")
+region = Rect2(0, 0, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ehba"]
+atlas = ExtResource("3_l581y")
+region = Rect2(25, 0, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r5mxw"]
+atlas = ExtResource("3_l581y")
+region = Rect2(50, 0, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kc6et"]
+atlas = ExtResource("3_l581y")
+region = Rect2(75, 0, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kefpq"]
+atlas = ExtResource("2_mf5il")
+region = Rect2(0, 0, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_guwev"]
+atlas = ExtResource("2_mf5il")
+region = Rect2(25, 0, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b60qr"]
+atlas = ExtResource("2_mf5il")
+region = Rect2(50, 0, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rds0g"]
+atlas = ExtResource("2_mf5il")
+region = Rect2(75, 0, 25, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gewlj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lonxu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xd8hu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7jsge")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s7v7b")
+}],
+"loop": false,
+"name": &"bird_blue",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2fs11")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ehba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r5mxw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kc6et")
+}],
+"loop": false,
+"name": &"bird_red",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kefpq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_guwev")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b60qr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rds0g")
+}],
+"loop": false,
+"name": &"bird_yellow",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e66d7"]
+radius = 13.0
+
+[node name="Bird" type="CharacterBody2D" groups=["bird"]]
+process_mode = 3
+collision_layer = 2
+collision_mask = 5
+floor_stop_on_slope = false
+script = ExtResource("1_aqiht")
+
+[node name="bird_texture" type="AnimatedSprite2D" parent="."]
+position = Vector2(-5, 0)
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_gewlj")
+animation = &"bird_yellow"
+
+[node name="Area2D" type="Area2D" parent="." groups=["bird"]]
+visible = false
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Area2D"]
+scale = Vector2(2.5, 2.5)
+polygon = PackedVector2Array(-2, -5.2, 3.2, -5.2, 6, -1.6, 6, 0.4, 7.6, 2, 7.2, 2.8, 6, 4.8, 1.2, 6, -2.8, 6, -6, 3.6, -8, 1.6, -6, -2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_e66d7")
+
+[node name="flap" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_cpu3j")
+pitch_scale = 1.25
+
+[node name="die" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_uomgm")
+
+[node name="hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_jeblh")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="finished" from="die" to="." method="_on_die_finished"]
