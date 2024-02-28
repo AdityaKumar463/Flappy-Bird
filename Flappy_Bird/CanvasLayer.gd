@@ -4,7 +4,8 @@ var current_points : int
 @onready var animation_player = $"../AnimationPlayer"
 
 func _ready():
-	score_dir = OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS).path_join("/high_score.txt")
+	DirAccess.make_dir_absolute(OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS).path_join("/My games/Flappy Bird"))
+	score_dir = OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS).path_join("/My games/Flappy Bird/high_score.txt")
 	$TextureRect.visible = false
 	$TextureRect/new.visible = false
 func _process(delta):
